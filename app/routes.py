@@ -17,6 +17,10 @@ def init_app(app):
     def inicio():        
         return render_template("inicio.html")
     
+    @app.route("/produtos")
+    def produtos():        
+        return render_template("produtos.html")
+    
     @app.route("/usuario")
     def usuario():        
         return render_template("usuario.html")
@@ -25,9 +29,14 @@ def init_app(app):
     def cad_user():        
         return render_template("cad_user.html")
     
+    @app.route("/cad_prod")
+    def cad_prod():        
+        return render_template("cad_prod.html")
+    
     @app.route("/atualiza_user")
     def atualiza_user():        
         return render_template("atualiza_user.html")
     
-    
-    
+    @app.route("/atualiza_prod")
+    def atualiza_prod():        
+        return render_template("atualiza_prod.html")
