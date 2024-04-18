@@ -1,4 +1,5 @@
 from app.models import usuario
+from app.models import produto
 from app import db
 from app.forms import LoginForm
 from datetime import timedelta
@@ -19,7 +20,7 @@ def init_app(app):
     
     @app.route("/produtos")
     def produtos():        
-        return render_template("produtos.html")
+        return render_template("produtos.html", produtos=db.session.execute(db.select(produto).order_by(produto.id)).scalars())
     
     @app.route("/excluir/<int:id>")
     def excluir_user(id):
@@ -28,17 +29,45 @@ def init_app(app):
         db.session.commit()
         return redirect(url_for("inicio"))
     
-    @app.route("/cad_user")
+    @app.route("/excluir_prod/<int:id>")
+    def excluir_prod(id):
+        delete=produto.query.filter_by(id=id).first()
+        db.session.delete(delete)
+        db.session.commit()
+        return redirect(url_for("produtos"))
+    
+    @app.route("/cad_user", methods=["GET", "POST"])
     def cad_user():        
+        if request.method == "POST":
+            user = usuario()
+            user.email = request.form["email"]
+            user.nome = request.form["nome"]        
+            user.senha = generate_password_hash(request.form["senha"])
+            db.session.add(user)
+            db.session.commit()
+                            
+            flash("Usuario criado com sucesso!")       
+            return redirect(url_for("cad_user"))
         return render_template("cad_user.html")
     
+    @app.route("/atualiza_user/<int:id>", methods=["GET", "POST"])
+    def atualiza_user(id):
+        user01=usuario.query.filter_by(id=id).first()
+        if request.method == "POST":
+            nome_usuario = request.form["nome"]
+            email_usuario = request.form["email"]        
+            senha = generate_password_hash(request.form["senha"])
+            
+            flash("Usuario alterado com sucesso!")     
+
+            user01.query.filter_by(id=id).update({"email":email_usuario, "nome":nome_usuario, "senha":senha })
+            db.session.commit()
+            return redirect(url_for("inicio"))
+        return render_template("atualiza_user.html", users=user01) 
+
     @app.route("/cad_prod")
     def cad_prod():        
         return render_template("cad_prod.html")
-    
-    @app.route("/atualiza_user")
-    def atualiza_user():        
-        return render_template("atualiza_user.html")
     
     @app.route("/atualiza_prod")
     def atualiza_prod():        
