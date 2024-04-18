@@ -15,15 +15,18 @@ def init_app(app):
     
     @app.route("/")
     def inicio():        
-        return render_template("inicio.html")
+        return render_template("/inicio.html", usuarios=db.session.execute(db.select(usuario).order_by(usuario.id)).scalars())
     
     @app.route("/produtos")
     def produtos():        
         return render_template("produtos.html")
     
-    @app.route("/usuario")
-    def usuario():        
-        return render_template("usuario.html")
+    @app.route("/excluir/<int:id>")
+    def excluir_user(id):
+        delete=usuario.query.filter_by(id=id).first()
+        db.session.delete(delete)
+        db.session.commit()
+        return redirect(url_for("inicio"))
     
     @app.route("/cad_user")
     def cad_user():        
