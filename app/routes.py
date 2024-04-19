@@ -124,3 +124,19 @@ def init_app(app):
             db.session.commit()
             return redirect(url_for("produtos"))
         return render_template("atualiza_prod.html", prods=prod01) 
+    
+    @app.route("/atualiza_compr/<int:id>", methods=["GET", "POST"])
+    def atualiza_compr(id):
+        compr01=compra.query.filter_by(id=id).first()
+        if request.method == "POST":
+            cliente_compra = request.form["cliente"]
+            produto_compra = request.form["produto"]
+            quantidade_compra = request.form["quantidade"]
+            valor_compra = request.form["valor"]
+            
+            flash("produto alterado com sucesso!")     
+
+            compr01.query.filter_by(id=id).update({"cliente":cliente_compra, "produto":produto_compra, "quantidade":quantidade_compra, "valor": valor_compra})
+            db.session.commit()
+            return redirect(url_for("compras"))
+        return render_template("atualiza_compr.html", compr=compr01) 

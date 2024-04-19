@@ -1,0 +1,47 @@
+{% extends "base_sistema.html" %}
+{% block subtitulo %} Usuarios {% endblock%}
+    {% block conteudo %}
+    <section class="content">
+      <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+          <!-- general form elements -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Cadastro de compras</h3>
+            </div><!-- /.box-header -->
+            <!-- form start -->
+            <form class="row g-3" action="{{url_for('atualiza_compr', id=compr.id)}}" method="POST" name="dados_user" onSubmit="return enviardados_user();">
+              <div class="box-body">               
+                <div class="col-md-4">
+                  <label class="form-label">cliente</label>
+                  <input class="form-control" type="text" name="cliente" id="cliente" value="{{compr.cliente}}">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label" >produto</label>
+                  <input class="form-control" type="text" name="produto" value="{{compr.produto}}">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">quantidade</label>
+                  <input class="form-control"  type="number" name="quantidade" value="{{compr.quantidade}}">
+                </div> 
+                <div class="col-md-4">
+                  <label class="form-label">valor</label>
+                  <input class="form-control"  type="number" name="valor" value="{{compr.valor}}">
+                </div> 
+                <div class="col-md-12">
+                  <br>                      
+                </div>                                                         
+                <div class="col-md-12">
+                  <button class="btn btn-primary" type="submit">Alterar</button>                      
+                </div>
+                       
+            </div>
+            
+            </form>                 
+          </div><!-- /.box -->         
+        </div><!--/.col (left) -->
+        <!-- right column -->        
+      </div>   <!-- /.row -->
+    </section><!-- /.content -->
+    {% endblock %}

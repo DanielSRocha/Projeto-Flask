@@ -44,7 +44,7 @@
                     <td>{{compr.quantidade}}</td>
                     <td>{{compr.valor}}</td>
                     <td>{{compr.data}}</td>
-                    <td><a><span class="label label-success"><i class="fa-solid fa-pencil"></i> Alterar</span></a></td>
+                    <td><a href="{{url_for('atualiza_compr', id=compr.id)}}"><span class="label label-success"><i class="fa-solid fa-pencil"></i> Alterar</span></a></td>
                     <td><a href="{{url_for('excluir_compr',id=compr.id)}}"><span class="label label-danger"><i class="fa-solid fa-eraser"></i> Excluir</span></a></td>
                   </tr>
                {% endfor %}
