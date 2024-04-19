@@ -50,6 +50,22 @@ def init_app(app):
             return redirect(url_for("cad_user"))
         return render_template("cad_user.html")
     
+    @app.route("/cad_prod", methods=["GET", "POST"])
+    def cad_prod():        
+        if request.method == "POST":
+            prod = produto()
+            prod.nome = request.form["nome"]
+            prod.descricao = request.form["descricao"]        
+            prod.tamanho = request.form["tamanho"] 
+            prod.quantidade = request.form["quantidade"] 
+            prod.valor = request.form["valor"] 
+            db.session.add(prod)
+            db.session.commit()
+                            
+            flash("produto criado com sucesso!")       
+            return redirect(url_for("cad_prod"))
+        return render_template("cad_prod.html")
+    
     @app.route("/atualiza_user/<int:id>", methods=["GET", "POST"])
     def atualiza_user(id):
         user01=usuario.query.filter_by(id=id).first()
@@ -64,11 +80,20 @@ def init_app(app):
             db.session.commit()
             return redirect(url_for("inicio"))
         return render_template("atualiza_user.html", users=user01) 
-
-    @app.route("/cad_prod")
-    def cad_prod():        
-        return render_template("cad_prod.html")
     
-    @app.route("/atualiza_prod")
-    def atualiza_prod():        
-        return render_template("atualiza_prod.html")
+    @app.route("/atualiza_prod/<int:id>", methods=["GET", "POST"])
+    def atualiza_prod(id):
+        prod01=produto.query.filter_by(id=id).first()
+        if request.method == "POST":
+            nome_produto = request.form["nome"]
+            descricao_produto = request.form["descricao"]
+            tamahno_produto = request.form["tamanho"]
+            quantidade_produto = request.form["quantidade"]
+            valor_produto = request.form["valor"]
+            
+            flash("produto alterado com sucesso!")     
+
+            prod01.query.filter_by(id=id).update({"nome":nome_produto, "descricao":descricao_produto, "tamanho":tamahno_produto, "quantidade":quantidade_produto, "valor": valor_produto})
+            db.session.commit()
+            return redirect(url_for("produtos"))
+        return render_template("atualiza_prod.html", prods=prod01) 

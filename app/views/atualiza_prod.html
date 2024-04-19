@@ -8,30 +8,30 @@
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Cadastro de usuarios</h3>
+              <h3 class="box-title">Cadastro de produtos</h3>
             </div><!-- /.box-header -->
             <!-- form start -->
             <form class="row g-3" action="" method="POST" name="dados_user" onSubmit="return enviardados_user();">
               <div class="box-body">               
                 <div class="col-md-4">
                   <label class="form-label">Nome</label>
-                  <input class="form-control" type="text" name="nome" id="nome" value="Roupa preta">
+                  <input class="form-control" type="text" name="nome" id="nome" value="{{prods.nome}}">
                 </div>
                 <div class="col-md-4">
                   <label class="form-label" >Descrição</label>
-                  <input class="form-control" type="text" name="email" value="Uma roupa preta pra homens">
+                  <input class="form-control" type="text" name="descricao" value="{{prods.descricao}}">
                 </div>
                 <div class="col-md-4">
                   <label class="form-label">Tamanho</label>
-                  <input class="form-control"  type="text" name="senha" value="GG">
+                  <input class="form-control"  type="text" name="tamanho" value="{{prods.tamanho}}">
                 </div> 
                 <div class="col-md-4">
                   <label class="form-label">Quantidade</label>
-                  <input class="form-control"  type="number" name="senha" value="50">
+                  <input class="form-control"  type="number" name="quantidade" value="{{prods.quantidade}}">
                 </div> 
                 <div class="col-md-4">
                   <label class="form-label">Valor</label>
-                  <input class="form-control"  type="number" name="senha" value="R$60">
+                  <input class="form-control"  type="number" name="valor" value="{{prods.valor}}">
                 </div> 
                 <div class="col-md-12">
                   <br>                      

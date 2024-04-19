@@ -11,7 +11,7 @@
               <h3 class="box-title">Cadastro de Produtos</h3>
             </div><!-- /.box-header -->
             <!-- form start -->
-            <form class="row g-3" action="{{url_for('cad_user')}}" method="POST" name="dados_user" onSubmit="return enviardados_user();">
+            <form class="row g-3" action="{{url_for('cad_prod')}}" method="POST" name="dados_user">
               <div class="box-body">
                
               <div class="col-md-10">
@@ -33,7 +33,7 @@
               </div>
               <div class="col-md-4">
                 <label class="form-label" >Descrição</label>
-                <input class="form-control" type="text" name="descrição">
+                <input class="form-control" type="text" name="descricao">
               </div>
               <div class="col-md-4">
                 <label class="form-label">Tamanho</label>

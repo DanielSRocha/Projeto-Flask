@@ -46,7 +46,7 @@
                     <td>{{prods.quantidade}}</td>
                     <td>{{prods.valor}}</td>
                     <td>{{prods.data}}</td>
-                    <td><a><span class="label label-success"><i class="fa-solid fa-pencil"></i> Alterar</span></a></td>
+                    <td><a href="{{url_for('atualiza_prod', id=prods.id)}}"><span class="label label-success"><i class="fa-solid fa-pencil"></i> Alterar</span></a></td>
                     <td><a href="{{url_for('excluir_prod',id=prods.id)}}"><span class="label label-danger"><i class="fa-solid fa-eraser"></i> Excluir</span></a></td>
                   </tr>
                {% endfor %}
@@ -54,7 +54,7 @@
                            
               </tbody>
           </table>
-          <a href="{{url_for('cad_prod')}}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Inserir produtos</a>
+          <a href="{{url_for('cad_prod')}}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Inserir usuarios</a>
        </div>      
     </div>        
   </div>
