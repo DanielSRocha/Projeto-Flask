@@ -1,5 +1,6 @@
 from app.models import usuario
 from app.models import produto
+from app.models import compra
 from app import db
 from app.forms import LoginForm
 from datetime import timedelta
@@ -22,6 +23,10 @@ def init_app(app):
     def produtos():        
         return render_template("produtos.html", produtos=db.session.execute(db.select(produto).order_by(produto.id)).scalars())
     
+    @app.route("/compras")
+    def compras():        
+        return render_template("compras.html", compras=db.session.execute(db.select(compra).order_by(compra.id)).scalars())
+    
     @app.route("/excluir/<int:id>")
     def excluir_user(id):
         delete=usuario.query.filter_by(id=id).first()
@@ -35,6 +40,13 @@ def init_app(app):
         db.session.delete(delete)
         db.session.commit()
         return redirect(url_for("produtos"))
+    
+    @app.route("/excluir_compr/<int:id>")
+    def excluir_compr(id):
+        delete=compra.query.filter_by(id=id).first()
+        db.session.delete(delete)
+        db.session.commit()
+        return redirect(url_for("compras"))
     
     @app.route("/cad_user", methods=["GET", "POST"])
     def cad_user():        
@@ -65,6 +77,21 @@ def init_app(app):
             flash("produto criado com sucesso!")       
             return redirect(url_for("cad_prod"))
         return render_template("cad_prod.html")
+    
+    @app.route("/cad_compr", methods=["GET", "POST"])
+    def cad_compr():        
+        if request.method == "POST":
+            compr = compra()
+            compr.cliente = request.form["cliente"]
+            compr.produto = request.form["produto"]        
+            compr.quantidade = request.form["quantidade"]
+            compr.valor = request.form["valor"]
+            db.session.add(compr)
+            db.session.commit()
+                            
+            flash("compra criado com sucesso!")       
+            return redirect(url_for("cad_compr"))
+        return render_template("cad_compr.html")
     
     @app.route("/atualiza_user/<int:id>", methods=["GET", "POST"])
     def atualiza_user(id):
