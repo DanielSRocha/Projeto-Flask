@@ -1,18 +1,31 @@
 # Estilo Único - Sistema de Gestão de Loja de Roupas
 
-Bem-vindo ao Estilo Único, uma aplicação web desenvolvida em Python com o framework Flask, projetada para ajudar donos de lojas de roupas a gerenciar seu inventário de forma eficiente. Este projeto utiliza o PostgreSQL como banco de dados para armazenar informações sobre os produtos disponíveis na loja.
+Bem-vindo ao Estilo Único, uma aplicação web desenvolvida em Python com o framework Flask, projetada para ajudar donos de lojas de roupas a gerenciar seu inventário de forma eficiente. Este projeto utiliza o PostgreSQL como banco de dados para armazenar informações sobre os usuários, produtos e compras cadastrados na loja.
 
 ## Visão Geral
 
-Estilo Único é uma loja de roupas online que visa proporcionar aos clientes uma experiência única e personalizada ao comprar roupas de moda. Com este sistema de gestão, os proprietários de lojas podem facilmente adicionar, editar e excluir produtos do seu inventário, garantindo que sempre tenham os itens mais recentes disponíveis para seus clientes.
+Estilo Único é uma loja de roupas online que visa proporcionar aos clientes uma experiência única e personalizada ao comprar roupas de moda. Com este sistema de gestão, os proprietários de lojas podem facilmente adicionar, editar e excluir, usuarios no sistema, produtos do seu inventário e compras feitas no site, garantindo que sempre tenham os itens mais recentes disponíveis para seus clientes.
 
 ## Funcionalidades Principais
 
-- **Cadastro de Produtos**: Os usuários podem adicionar novos produtos ao inventário, incluindo informações como nome, descrição, preço e quantidade disponível.
+### Usuários
 
-- **Edição de Produtos**: É possível atualizar as informações dos produtos existentes, como preço e quantidade disponível, para refletir mudanças no estoque ou nas especificações do produto.
+- **Cadastrar**: Registre-se na plataforma fornecendo informações básicas.
+- **Editar**: Atualize seu perfil conforme necessário.
+- **Excluir**: Encerre sua conta, se desejar.
 
-- **Exclusão de Produtos**: Caso um produto não esteja mais disponível para venda, os usuários podem removê-lo do inventário.
+### Produtos
+
+- **Cadastrar**: Adicione novos produtos ao inventário, incluindo detalhes como nome, descrição, preço e quantidade disponível.
+- **Editar**: Faça ajustes nos produtos existentes, como preço ou quantidade.
+- **Excluir**: Remova produtos do inventário.
+
+### Compras
+
+- **Cadastrar**: Faça suas compras selecionando produtos e concluindo o processo de compra.
+- **Editar**: Em certas situações, é possível fazer alterações em compras em andamento.
+- **Excluir**: Cancelar uma compra, seguindo os termos e condições.
+
 
 ## Tecnologias Utilizadas
 
